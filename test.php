@@ -8,7 +8,9 @@ mysql_select_db('store');
 echo "Connected.\r\n";
 
 $datestamp=date("YmdHi");
-
+if (!file_exists('reports')) {
+  mkdir('reports', 0777, true);
+}
 echo "Outputing stock take report.\r\n";
 $file=fopen("reports/stock_take.".$datestamp.".csv",'w');
 $rows=mysql_query("select * from item limit 5;");
