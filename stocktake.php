@@ -33,7 +33,7 @@ $total=0;
 $stock_take_start=strftime("%Y").'-02-01 00:00:00';
 $year_end=strftime("%Y").'-04-01 00:00:00';
 $result=mysql_query("select item.* from item join item_type using (item_type_id) where (item_type_id <> 827) and (department_id<13 or department_id>19) order by description");
-fwrite($file,"<p>The following items were stock checked since ".$stock_take_start.".  The number in stock is calculated based on stock movements the stock date and year end, ".$year_end.".  Note that negative stock quantitites are given a value of -$0.00.\n");
+fwrite($file,"<p>The following items were stock checked since ".$stock_take_start.".  The number in stock is calculated based on stock movements between the stock take date and year end, ".$year_end.".  Note that negative stock quantitites are given a value of -$0.00.\n");
 fwrite($file, "<p><table border=0>\n");
 fwrite($file, "<tr><th align='left'>Item ID</th><th align='left'>Description</th><th align='left'>Stock Take Date</th><th align='right'>Stock Take Qty</th><th align='right'>Sales</th><th align='right'>Returns</th><th align='right'>Orders In</th><th align='right'>On Apr 1</th><th align='right'>Cost(each)</th><th align='right'>Cost(line)</th></tr>");
 while ($row=mysql_fetch_object($result)) {
